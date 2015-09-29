@@ -17,83 +17,114 @@
 
 var React = require('react-native');
 var {
-  StyleSheet,
-  View,
-} = React;
+    StyleSheet,
+    View,
+    } = React;
 var UIExplorerListBase = require('./UIExplorerListBase');
 
 var COMPONENTS = [
-  require('./ImageExample'),
-  require('./ProgressBarAndroidExample'),
-  require('./ScrollViewSimpleExample'),
-  require('./SwitchAndroidExample'),
-  require('./TextExample.android'),
-  require('./TextInputExample.android'),
-  require('./ToolbarAndroidExample'),
-  require('./TouchableExample'),
-  require('./ViewExample'),
+    /*
+     * added by marsprince
+     * @author facebook
+     * */
+    /*require('./AssetScaledImageExample'),*/
+    require('./AsyncStorageExample'),
+    /* require('./GeolocationExample'),*/
+    /* require('./ImageCapInsetsExample'),*/
+    /*require('./ImageEditingExample'),*/
+    require('./ListViewExample'),
+    require('./ListViewGridLayoutExample'),
+    require('./ListViewPagingExample'),
+    /* require('./MapViewExample'),*/
+   /*  require('./ModalExample.android'),*/
+    /*require('./TransformExample'),*/
+    /* require('./WebViewExample'),*/
+
+    require('./ImageExample'),
+    require('./ProgressBarAndroidExample'),
+    require('./ScrollViewSimpleExample'),
+    require('./SwitchAndroidExample'),
+    require('./TextExample.android'),
+    require('./TextInputExample.android'),
+    require('./ToolbarAndroidExample'),
+    require('./TouchableExample'),
+    require('./ViewExample'),
+
+    require('./CustomTabBarExample'),
+    require('./ScrollableTabViewExample'),
+
 ];
 
 var APIS = [
-  require('./AccessibilityAndroidExample.android'),
-  require('./BorderExample'),
-  require('./LayoutEventsExample'),
-  require('./LayoutExample'),
-  require('./PanResponderExample'),
-  require('./PointerEventsExample'),
-  require('./TimerExample'),
-  require('./ToastAndroidExample.android'),
-  require('./XHRExample'),
+    /*
+     * added by marsprince
+     * @author facebook
+     * */
+    require('./AnimatedExample'),
+    /* require('./NetInfoExample'),*/
+    /*  require('./ResponderExample'),*/
+
+    require('./AccessibilityAndroidExample.android'),
+    require('./BorderExample'),
+    require('./LayoutEventsExample'),
+    require('./LayoutExample'),
+    require('./PanResponderExample'),
+    require('./PointerEventsExample'),
+    require('./TimerExample'),/*dependencies:react-timer-mixin*/
+    require('./ToastAndroidExample.android'),
+    require('./XHRExample'),
+
 ];
 
-type Props = {
-  onSelectExample: Function,
-  isInDrawer: bool,
+type
+Props = {
+    onSelectExample: Function,
+    isInDrawer: bool,
 };
 
 class UIExplorerList extends React.Component {
-  props: Props;
+    props:Props;
 
-  render() {
-    return (
-      <UIExplorerListBase
-        components={COMPONENTS}
-        apis={APIS}
-        searchText=""
-        renderAdditionalView={this.renderAdditionalView.bind(this)}
-        onPressRow={this.onPressRow.bind(this)}
-      />
-    );
-  }
-
-  renderAdditionalView(renderRow, renderTextInput): React.Component {
-    if (this.props.isInDrawer) {
-      var homePage = renderRow({
-        title: 'UIExplorer',
-        description: 'List of examples',
-      }, -1);
-      return (
-        <View>
-          {homePage}
-        </View>
-      );
+    render() {
+        return (
+            <UIExplorerListBase
+                components={COMPONENTS}
+                apis={APIS}
+                searchText=""
+                renderAdditionalView={this.renderAdditionalView.bind(this)}
+                onPressRow={this.onPressRow.bind(this)}
+                />
+        );
     }
-    return renderTextInput(styles.searchTextInput);
-  }
 
-  onPressRow(example: any) {
-    var Component = UIExplorerListBase.makeRenderable(example);
-    this.props.onSelectExample({
-      title: Component.title,
-      component: Component,
-    });
-  }
+    renderAdditionalView(renderRow, renderTextInput):React.Component {
+        if (this.props.isInDrawer) {
+            var homePage = renderRow({
+                title: 'UIExplorer',
+                description: 'List of examples',
+            }, -1);
+            return (
+                <View>
+                    {homePage}
+                </View>
+            );
+        }
+        return renderTextInput(styles.searchTextInput);
+    }
+
+    onPressRow(example:any) {
+        var Component = UIExplorerListBase.makeRenderable(example);
+        this.props.onSelectExample({
+            title: Component.title,
+            component: Component,
+        });
+    }
 }
 
 var styles = StyleSheet.create({
-  searchTextInput: {
-    padding: 2,
-  },
+    searchTextInput: {
+        padding: 2,
+    },
 });
 
 module.exports = UIExplorerList;

@@ -1,0 +1,12 @@
+{
+  "name": "UIExplorerApp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node_modules/react-native/packager/packager.sh"
+  },
+  "dependencies": {
+    "react-native": "^0.12.0-rc",
+    "react-timer-mixin": "^0.13.3"
+  }
+}

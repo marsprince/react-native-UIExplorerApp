@@ -51,7 +51,7 @@ var COMPONENTS = [
     require('./ViewExample'),
 
     require('./CustomTabBarExample'),
-    require('./ScrollableTabViewExample'),
+    //require('./ScrollableTabViewExample'),
 
 ];
 

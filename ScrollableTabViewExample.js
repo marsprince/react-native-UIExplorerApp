@@ -17,6 +17,43 @@ var {
     ScrollView,
 } = React;
 var deviceWidth = require('Dimensions').get('window').width;
+
+var ScrollableTabViewExample = React.createClass({
+    render() {
+        return (
+            <View style={styles.container}>
+                <ScrollableTabView renderTabBar={() => <CustomTabBar />}>
+                    <ScrollView tabLabel="paper" style={styles.tabView}>
+                        <View style={styles.card}>
+                            <Text>News</Text>
+                        </View>
+                    </ScrollView>
+                    <ScrollView tabLabel="stalker" style={styles.tabView}>
+                        <View style={styles.card}>
+                            <Text>Friends</Text>
+                        </View>
+                    </ScrollView>
+                    <ScrollView tabLabel="chatboxes" style={styles.tabView}>
+                        <View style={styles.card}>
+                            <Text>Messenger</Text>
+                        </View>
+                    </ScrollView>
+                    <ScrollView tabLabel="world" style={styles.tabView}>
+                        <View style={styles.card}>
+                            <Text>Notifications</Text>
+                        </View>
+                    </ScrollView>
+                    <ScrollView tabLabel="round" style={styles.tabView}>
+                        <View style={styles.card}>
+                            <Text>Other nav</Text>
+                        </View>
+                    </ScrollView>
+                </ScrollableTabView>
+            </View>
+        );
+    }
+});
+
 exports.title = '<ScrollableTabView>';
 exports.description = 'ScrollableTabView ' +
   'show different pages.';
@@ -27,33 +64,8 @@ exports.examples = [
     title: 'Basic ScrollableTabView ',
     render: function() {
         return (
-            <ScrollableTabView renderTabBar={() => <CustomTabBar tabs={['test1','test2','test12']} />}>
-                <ScrollView  style={styles.tabView}>
-                    <View style={styles.card}>
-                        <Text>News</Text>
-                    </View>
-                </ScrollView>
-                <ScrollView style={styles.tabView}>
-                    <View style={styles.card}>
-                        <Text>Friends</Text>
-                    </View>
-                </ScrollView>
-                <ScrollView  style={styles.tabView}>
-                    <View style={styles.card}>
-                        <Text>Messenger</Text>
-                    </View>
-                </ScrollView>
-                <ScrollView  style={styles.tabView}>
-                    <View style={styles.card}>
-                        <Text>Notifications</Text>
-                    </View>
-                </ScrollView>
-                <ScrollView  style={styles.tabView}>
-                    <View style={styles.card}>
-                        <Text>Other nav</Text>
-                    </View>
-                </ScrollView>
-            </ScrollableTabView>
+            <ScrollableTabViewExample>
+            </ScrollableTabViewExample>
         );
     },
   },

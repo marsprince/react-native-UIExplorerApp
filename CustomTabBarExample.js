@@ -2,7 +2,7 @@
  * @author brentvatne
  * @github https://github.com/brentvatne/react-native-scrollable-tab-view
  * @name CustomTabBar
- * @added marsprince
+ * @edited marsprince
  */
 'use strict';
 
@@ -25,7 +25,7 @@ exports.examples = [
     title: 'Basic CustomeTabBar',
     render: function() {
       return (
-        <CustomTabBar tabs={['test1','test2','test5']} activeTab='3'>
+        <CustomTabBar tabs={['test1','test2','test5']} activeTab={0} >
         </CustomTabBar>
       );
     },

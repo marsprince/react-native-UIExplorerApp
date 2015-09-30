@@ -28,7 +28,7 @@ var COMPONENTS = [
      * @author facebook
      * */
     /*require('./AssetScaledImageExample'),*/
-    require('./AsyncStorageExample'),
+   /* require('./AsyncStorageExample'),*/
     /* require('./GeolocationExample'),*/
     /* require('./ImageCapInsetsExample'),*/
     /*require('./ImageEditingExample'),*/
@@ -50,8 +50,8 @@ var COMPONENTS = [
     require('./TouchableExample'),
     require('./ViewExample'),
 
-    require('./CustomTabBarExample'),
-    require('./ScrollableTabViewExample'),
+    require('./CustomTabBarExample'),/*dependencies:components/CustomTabBar*/
+    require('./ScrollableTabViewExample'),/*dependencies:react-native-scrollable-tab-view*/
 
 ];
 

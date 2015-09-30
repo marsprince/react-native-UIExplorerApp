@@ -2,7 +2,7 @@
  * @author brentvatne
  * @github https://github.com/brentvatne/react-native-scrollable-tab-view
  * @name CustomTabBar
- * @added marsprince
+ * @edited marsprince
  */
 'use strict';
 
@@ -27,7 +27,6 @@ var styles = StyleSheet.create({
   },
 
   tabs: {
-    width:deviceWidth,
     height: 50,
     flexDirection: 'row',
     marginTop: 20,
@@ -50,10 +49,8 @@ var CustomTabBar = React.createClass({
     var isTabActive = this.props.activeTab === page;
 
     return (
-        <TouchableOpacity key={name} onPress={() => this.props.goToPage(page)}>
-          <View style={[styles.tab]}>
+        <TouchableOpacity style={[styles.tab]}  key={name} onPress={() => this.props.goToPage(page)}>
             <Text style={{color: isTabActive ? 'navy' : 'black', fontWeight: isTabActive ? 'bold' : 'normal'}}>{name}</Text>
-          </View>
         </TouchableOpacity>
     );
   },
@@ -63,7 +60,6 @@ var CustomTabBar = React.createClass({
       left: (deviceWidth * value) / this.props.tabs.length
     }));
   },
-
   render() {
     var numberOfTabs = this.props.tabs.length;
     var tabUnderlineStyle = {
@@ -75,9 +71,11 @@ var CustomTabBar = React.createClass({
     };
 
     return (
-        <View style={styles.tabs}>
-          {this.props.tabs.map((tab, i) => this.renderTabOption(tab, i))}
-          <View style={tabUnderlineStyle} ref={TAB_UNDERLINE_REF} />
+        <View>
+            <View style={styles.tabs}>
+                {this.props.tabs.map((tab, i) => this.renderTabOption(tab, i))}
+            </View>
+            <View style={tabUnderlineStyle} ref={TAB_UNDERLINE_REF} />
         </View>
     );
   },

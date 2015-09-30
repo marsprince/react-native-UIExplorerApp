@@ -2,7 +2,7 @@
 
 facebook UIExplorerApp Extensions
 
-added:
+All useful components are collected from Github
 
 #CustomeBar && react-native-scrollable-tab-view:
 

@@ -57,9 +57,11 @@ var CustomTabBar = React.createClass({
   },
 
   setAnimationValue(value) {
-    this.refs[TAB_UNDERLINE_REF].setNativeProps(precomputeStyle({
-      left: (deviceWidth * value) / this.props.tabs.length
-    }));
+      this.refs[TAB_MAIN].measure((ox, oy, width, height) => {
+          this.refs[TAB_UNDERLINE_REF].setNativeProps(precomputeStyle({
+              left: (width * value) / this.props.tabs.length
+          }));
+      });
   },
     componentDidMount() {
         setTimeout(this.measureHeader);
@@ -73,7 +75,6 @@ var CustomTabBar = React.createClass({
         });
     },
   render() {
-    var numberOfTabs = this.props.tabs.length;
     var tabUnderlineStyle = {
       position: 'absolute',
       height: 4,

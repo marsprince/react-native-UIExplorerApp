@@ -17,6 +17,7 @@ var {
 var deviceWidth = require('Dimensions').get('window').width;
 var precomputeStyle = require('precomputeStyle');
 var TAB_UNDERLINE_REF = 'TAB_UNDERLINE';
+var TAB_MAIN= 'TAB_MAIN';
 
 var styles = StyleSheet.create({
   tab: {
@@ -60,19 +61,29 @@ var CustomTabBar = React.createClass({
       left: (deviceWidth * value) / this.props.tabs.length
     }));
   },
+    componentDidMount() {
+        setTimeout(this.measureHeader);
+    },
+
+    measureHeader() {
+        this.refs[TAB_MAIN].measure((ox, oy, width, height) => {
+            this.refs[TAB_UNDERLINE_REF].setNativeProps(precomputeStyle({
+                width: width / this.props.tabs.length
+            }));
+        });
+    },
   render() {
     var numberOfTabs = this.props.tabs.length;
     var tabUnderlineStyle = {
       position: 'absolute',
-      width: deviceWidth / numberOfTabs,
       height: 4,
       backgroundColor: 'navy',
       bottom: 0,
     };
 
-    return (
+      return (
         <View>
-            <View style={styles.tabs}>
+            <View style={styles.tabs}  ref={TAB_MAIN}>
                 {this.props.tabs.map((tab, i) => this.renderTabOption(tab, i))}
             </View>
             <View style={tabUnderlineStyle} ref={TAB_UNDERLINE_REF} />

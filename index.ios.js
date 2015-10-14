@@ -26,28 +26,28 @@ var {
 
 var UIExplorerApp = React.createClass({
 
-  getInitialState: function() {
-    return {
-      openExternalExample: (null: ?React.Component),
-  };
+    getInitialState: function() {
+        return {
+            openExternalExample: (null: ?React.Component),
+    };
 },
 
 render: function() {
-  if (this.state.openExternalExample) {
-    var Example = this.state.openExternalExample;
-    return (
-        <Example
-            onExampleExit={() => {
+    if (this.state.openExternalExample) {
+        var Example = this.state.openExternalExample;
+        return (
+            <Example
+                onExampleExit={() => {
             this.setState({ openExternalExample: null, });
           }}
-            />
-    );
-  }
+                />
+        );
+    }
 
-  return (
-      <NavigatorIOS
-          style={styles.container}
-          initialRoute={{
+    return (
+        <NavigatorIOS
+            style={styles.container}
+            initialRoute={{
           title: 'UIExplorer',
           component: UIExplorerList,
           passProps: {
@@ -56,20 +56,20 @@ render: function() {
             },
           }
         }}
-          itemWrapperStyle={styles.itemWrapper}
-          tintColor="#008888"
-          />
-  );
+            itemWrapperStyle={styles.itemWrapper}
+            tintColor="#008888"
+            />
+    );
 }
 });
 
 var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  itemWrapper: {
-    backgroundColor: '#eaeaea',
-  },
+    container: {
+        flex: 1,
+    },
+    itemWrapper: {
+        backgroundColor: '#eaeaea',
+    },
 });
 
 AppRegistry.registerComponent('UIExplorerApp', () => UIExplorerApp);

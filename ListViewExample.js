@@ -68,7 +68,7 @@ var ListViewSimpleExample = React.createClass({
     return (
       <TouchableHighlight onPress={() => this._pressRow(rowID)}>
         <View>
-          <View style={styles.row}>
+          <View style={ this._pressData[rowID]?styles.rowSelect:styles.rows}>
             <Image style={styles.thumb} source={imgSource} />
             <Text style={styles.text}>
               {rowData + ' - ' + LOREM_IPSUM.substr(0, rowHash % 301 + 10)}
@@ -90,6 +90,10 @@ var ListViewSimpleExample = React.createClass({
   },
 
   _pressRow: function(rowID: number) {
+    for(let x in  this._pressData)
+    {
+      if(x!=rowID) this._pressData[x] = false;
+    }
     this._pressData[rowID] = !this._pressData[rowID];
     this.setState({dataSource: this.state.dataSource.cloneWithRows(
       this._genRows(this._pressData)
@@ -115,6 +119,13 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 10,
     backgroundColor: '#F6F6F6',
+  },
+  rowSelect:
+  {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    padding: 10,
+    backgroundColor: '#FFB90F',
   },
   separator: {
     height: 1,

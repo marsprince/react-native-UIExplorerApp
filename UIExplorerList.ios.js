@@ -53,6 +53,9 @@ var COMPONENTS = [
   require('./TouchableExample'),
   require('./ViewExample'),
   require('./WebViewExample'),
+
+  require('./CustomTabBarExample'),/*dependencies:components/CustomTabBar*/
+  require('./ScrollableTabViewExample'),/*dependencies:react-native-scrollable-tab-view*/
 ];
 
 var APIS = [

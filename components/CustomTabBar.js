@@ -2,7 +2,7 @@
  * @author brentvatne
  * @github https://github.com/brentvatne/react-native-scrollable-tab-view
  * @name CustomTabBar
- * @added marsprince
+ * @edited marsprince
  */
 'use strict';
 
@@ -15,8 +15,9 @@ var {
     } = React;
 
 var deviceWidth = require('Dimensions').get('window').width;
-var precomputeStyle = require('precomputeStyle');
+//var precomputeStyle = require('precomputeStyle');
 var TAB_UNDERLINE_REF = 'TAB_UNDERLINE';
+var TAB_MAIN= 'TAB_MAIN';
 
 var styles = StyleSheet.create({
   tab: {
@@ -27,7 +28,6 @@ var styles = StyleSheet.create({
   },
 
   tabs: {
-    width:deviceWidth,
     height: 50,
     flexDirection: 'row',
     marginTop: 20,
@@ -50,34 +50,44 @@ var CustomTabBar = React.createClass({
     var isTabActive = this.props.activeTab === page;
 
     return (
-        <TouchableOpacity key={name} onPress={() => this.props.goToPage(page)}>
-          <View style={[styles.tab]}>
+        <TouchableOpacity style={[styles.tab]}  key={name} onPress={() => this.props.goToPage(page)}>
             <Text style={{color: isTabActive ? 'navy' : 'black', fontWeight: isTabActive ? 'bold' : 'normal'}}>{name}</Text>
-          </View>
         </TouchableOpacity>
     );
   },
 
   setAnimationValue(value) {
-    this.refs[TAB_UNDERLINE_REF].setNativeProps(precomputeStyle({
-      left: (deviceWidth * value) / this.props.tabs.length
-    }));
+      this.refs[TAB_MAIN].measure((ox, oy, width, height) => {
+          this.refs[TAB_UNDERLINE_REF].setNativeProps({
+              style: { left: (width * value) / this.props.tabs.length}
+          });
+      });
   },
+    componentDidMount() {
+        setTimeout(this.measureHeader);
+    },
 
+    measureHeader() {
+        this.refs[TAB_MAIN].measure((ox, oy, width, height) => {
+            this.refs[TAB_UNDERLINE_REF].setNativeProps({
+                style: { width: width / this.props.tabs.length}
+            });
+        });
+    },
   render() {
-    var numberOfTabs = this.props.tabs.length;
     var tabUnderlineStyle = {
       position: 'absolute',
-      width: deviceWidth / numberOfTabs,
       height: 4,
       backgroundColor: 'navy',
       bottom: 0,
     };
 
-    return (
-        <View style={styles.tabs}>
-          {this.props.tabs.map((tab, i) => this.renderTabOption(tab, i))}
-          <View style={tabUnderlineStyle} ref={TAB_UNDERLINE_REF} />
+      return (
+        <View>
+            <View style={styles.tabs}  ref={TAB_MAIN}>
+                {this.props.tabs.map((tab, i) => this.renderTabOption(tab, i))}
+            </View>
+            <View style={tabUnderlineStyle} ref={TAB_UNDERLINE_REF} />
         </View>
     );
   },

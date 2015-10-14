@@ -15,7 +15,7 @@ var {
     } = React;
 
 var deviceWidth = require('Dimensions').get('window').width;
-var precomputeStyle = require('precomputeStyle');
+//var precomputeStyle = require('precomputeStyle');
 var TAB_UNDERLINE_REF = 'TAB_UNDERLINE';
 var TAB_MAIN= 'TAB_MAIN';
 
@@ -58,9 +58,9 @@ var CustomTabBar = React.createClass({
 
   setAnimationValue(value) {
       this.refs[TAB_MAIN].measure((ox, oy, width, height) => {
-          this.refs[TAB_UNDERLINE_REF].setNativeProps(precomputeStyle({
-              left: (width * value) / this.props.tabs.length
-          }));
+          this.refs[TAB_UNDERLINE_REF].setNativeProps({
+              style: { left: (width * value) / this.props.tabs.length}
+          });
       });
   },
     componentDidMount() {
@@ -69,9 +69,9 @@ var CustomTabBar = React.createClass({
 
     measureHeader() {
         this.refs[TAB_MAIN].measure((ox, oy, width, height) => {
-            this.refs[TAB_UNDERLINE_REF].setNativeProps(precomputeStyle({
-                width: width / this.props.tabs.length
-            }));
+            this.refs[TAB_UNDERLINE_REF].setNativeProps({
+                style: { width: width / this.props.tabs.length}
+            });
         });
     },
   render() {

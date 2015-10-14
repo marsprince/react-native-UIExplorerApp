@@ -49,6 +49,7 @@ var COMPONENTS = [
     require('./ToolbarAndroidExample'),
     require('./TouchableExample'),
     require('./ViewExample'),
+    require('./ViewPagerAndroidExample.android'),
 
     require('./CustomTabBarExample'),/*dependencies:components/CustomTabBar*/
     require('./ScrollableTabViewExample'),/*dependencies:react-native-scrollable-tab-view*/
